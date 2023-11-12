@@ -3,20 +3,16 @@
 #include <string.h>
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-int main(void) {
-	FILE* fp;
-	char word[100];
+void main(void) {
+	FILE* fp = NULL;
+	char c;
+	fp = fopen("sample.txt","r");
+	if (fp == NULL)
+		printf("파일을 못 열음\n");
 	
-	fp = fopen("sample.txt","w");
-	if (fp == NULL) {
-		printf("파일을 열 수 없습니다.\n");
-		return 1;
+	while ((c = fgetc(fp)) != EOF) {
+		putchar(c);
 	}
-	int i;
-	for (i=0; i<3; i++) {
-		printf("Input a word: ");
-		scanf("%s",word);
-		fprintf(fp,"%s\n",word);	
-	}
+	
 	fclose(fp);
-} 
+}
